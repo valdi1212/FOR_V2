@@ -33,3 +33,7 @@ class Player:
         for i in range(0, 5):
             self.num[i] = random.randint(1, 6)
             self.labels[i] = self.myfont.render(str(self.num[i]), 1, (0, 0, 0))
+
+    def die_roll(self, die_num):
+        self.num[die_num - 1] = random.randint(1, 6)
+        self.labels[die_num - 1] = self.myfont.render(str(self.num[die_num - 1]), 1, (0, 0, 0))
