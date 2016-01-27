@@ -7,7 +7,7 @@ window_size = 640, 480
 window = pygame.display.set_mode(window_size)
 
 pygame.display.set_caption("Dice GUI")
-myfont = pygame.font.SysFont("Monospace", 15)
+myfont = pygame.font.SysFont("Monospace", 20)
 
 LEFT_BUTTON = 1
 WHITE = (255, 255, 255)
@@ -51,7 +51,6 @@ while running:
         pygame.draw.rect(window, WHITE, dice[i])
         window.blit(labels[i], (x_start + 25, 235))
         x_start += 70
-        pygame.display.update()
 
     for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -64,6 +63,8 @@ while running:
                         clicked_die = die
                 if clicked_die is not None:
                     click_die(clicked_die)
+
+    pygame.display.update()
 
 
 pygame.quit()
