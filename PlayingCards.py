@@ -19,23 +19,39 @@ window.fill(FOREST_GREEN)
 running = True
 clicked = False
 timer = pygame.time.Clock()
-player = CardPlayer(200, 600, 1, window)
-advers1 = CardPlayer(0, 50, 2, window)
-advers2 = CardPlayer(200, 0, 1, window)
-advers3 = CardPlayer(860, 50, 2, window)
+player1 = CardPlayer(200, 600, 1, window)
+player2 = CardPlayer(0, 50, 2, window)
+player3 = CardPlayer(200, 0, 1, window)
+player4 = CardPlayer(860, 50, 2, window)
+
+# print list of drawn cards to check for duplicates
+# CardPlayer.drawn_cards.sort()
+# print(CardPlayer.drawn_cards)
 
 while running:
-    player.draw_hand()
-    advers1.draw_hand()
-    advers2.draw_hand()
-    advers3.draw_hand()
-    # TODO: make the game only draw hands after the mouse is clicked
+    # drawing cards
+    player1.draw_hand()
+    player2.draw_hand()
+    player3.draw_hand()
+    player4.draw_hand()
+
+    # polling events
     event = pygame.event.poll()
     if event.type == pygame.QUIT:
         running = False
-    # elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT_BUTTON:
-        # TODO: call functions that would display the cards
-        # TODO call function that would calculate who has highest sum and declare the winner
+    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT_BUTTON and clicked is False:
+        clicked = True
+        window.fill(FOREST_GREEN)
+        CardPlayer.show_cards = True
+        scores = [player1.score, player2.score, player3.score, player4.score]
+        if scores[0] == max(scores):
+            print("Player 1(bottom) wins!")
+        elif scores[1] == max(scores):
+            print("Player 2(left) wins!")
+        elif scores[2] == max(scores):
+            print("Player 3(top) wins!")
+        elif scores[3] == max(scores):
+            print("Player 4(rigth) wins!")
 
     pygame.display.update()
 

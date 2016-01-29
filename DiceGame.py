@@ -65,7 +65,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT_BUTTON:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT_BUTTON and clicked is False:
             pos = pygame.mouse.get_pos()
             if player.dice[4].collidepoint(pos) and show_hidden is False:
                 player.die_roll(5)
