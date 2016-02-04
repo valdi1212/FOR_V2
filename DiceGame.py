@@ -65,21 +65,24 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT_BUTTON and clicked is False:
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT_BUTTON:
             pos = pygame.mouse.get_pos()
-            if player.dice[4].collidepoint(pos) and show_hidden is False:
-                player.die_roll(5)
-                show_hidden = True
-                clicked = True
-                print("Clicked hidden dice")
-            elif button_reroll.collidepoint(pos) and show_hidden is False:
-                player.dice_roll()
-                clicked = True
-                print("Clicked reroll button")
-            elif button_show.collidepoint(pos) and show_hidden is False:
-                show_hidden = True
-                clicked = True
-                print("Clicked show button")
+            if clicked is False:
+                if player.dice[4].collidepoint(pos) and show_hidden is False:
+                    player.die_roll(5)
+                    show_hidden = True
+                    clicked = True
+                    print("Clicked hidden dice")
+                elif button_reroll.collidepoint(pos) and show_hidden is False:
+                    player.dice_roll()
+                    clicked = True
+                    print("Clicked reroll button")
+                elif button_show.collidepoint(pos) and show_hidden is False:
+                    show_hidden = True
+                    clicked = True
+                    print("Clicked show button")
             elif button_result.collidepoint(pos):
                 print("Your score: %d" % sum(player.num))
                 print("The computer's score: %d" % sum(computer.num))

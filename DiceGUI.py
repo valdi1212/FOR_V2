@@ -40,6 +40,7 @@ def click_die(clicked_die):
         if clicked_die == dice[i]:
             labels[i] = myfont.render(str(random.randint(1, 6)), 1, BLACK)
 
+
 while running:
     x_start = 150
 
@@ -53,18 +54,19 @@ while running:
         x_start += 70
 
     for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT_BUTTON:
-                pos = pygame.mouse.get_pos()
-                clicked_die = None
-                for die in dice:
-                    if die.collidepoint(pos):
-                        clicked_die = die
-                if clicked_die is not None:
-                    click_die(clicked_die)
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT_BUTTON:
+            pos = pygame.mouse.get_pos()
+            clicked_die = None
+            for die in dice:
+                if die.collidepoint(pos):
+                    clicked_die = die
+            if clicked_die is not None:
+                click_die(clicked_die)
 
     pygame.display.update()
-
 
 pygame.quit()

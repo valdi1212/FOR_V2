@@ -39,6 +39,8 @@ while running:
     event = pygame.event.poll()
     if event.type == pygame.QUIT:
         running = False
+    elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+        running = False
     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT_BUTTON and clicked is False:
         clicked = True
         window.fill(FOREST_GREEN)
